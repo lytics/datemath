@@ -19,7 +19,7 @@ func Eval(expression string) (time.Time, error) {
 	return evalAnchor(time.Now(), expression)
 }
 
-// Eval
+// evalAnchor evaluates a date expression relative to an anchor time.
 func evalAnchor(anchor time.Time, expression string) (time.Time, error) {
 	if len(expression) < 3 {
 		return zero, fmt.Errorf("Expression too short: %s", expression)
@@ -48,6 +48,6 @@ func evalAnchor(anchor time.Time, expression string) (time.Time, error) {
 	case 's':
 		return anchor.Add(time.Duration(num) * time.Second), nil
 	default:
-		return zero, fmt.Errorf("Invalid unit `%s` is expression: %s", string(unit), expression)
+		return zero, fmt.Errorf("Invalid unit `%s` in expression: %s", string(unit), expression)
 	}
 }
