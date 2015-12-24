@@ -4,7 +4,7 @@ package datemath
 // as "+5w".
 //
 // Operator is either + or -. Units supported are y (year), M (month), w
-// (week), d (date), h (hour), m (minute), and s (second).
+// (week), d (day), h (hour), m (minute), and s (second).
 
 import (
 	"fmt"
