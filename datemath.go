@@ -9,6 +9,7 @@ package datemath
 import (
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -23,6 +24,10 @@ func Eval(expression string) (time.Time, error) {
 func evalAnchor(anchor time.Time, expression string) (time.Time, error) {
 	if len(expression) < 3 {
 		return zero, fmt.Errorf("Expression too short: %s", expression)
+	}
+
+	if strings.HasPrefix(expression, "now") {
+		expression = expression[3:]
 	}
 
 	numStr, unit := expression[:len(expression)-1], expression[len(expression)-1]

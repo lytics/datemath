@@ -33,10 +33,12 @@ var anchor = time.Date(2014, 12, 31, 23, 59, 59, 0, time.UTC)
 var tests []testCase = []testCase{
 	// Ok
 	{"+1s", anchor.Add(1 * time.Second), true},
+	{"now+1s", anchor.Add(1 * time.Second), true},
 	{"-1s", anchor.Add(-1 * time.Second), true},
 	{"+5m", anchor.Add(5 * time.Minute), true},
 	{"-5m", anchor.Add(-5 * time.Minute), true},
 	{"-6w", anchor.AddDate(0, 0, -6*7), true},
+	{"now-6w", anchor.AddDate(0, 0, -6*7), true},
 	{"+5M", anchor.AddDate(0, 5, 0), true},
 	{"-5M", anchor.AddDate(0, -5, 0), true},
 	{"-100y", time.Date(1914, 12, 31, 23, 59, 59, 0, time.UTC), true},
