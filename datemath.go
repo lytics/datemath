@@ -17,11 +17,11 @@ var zero = time.Time{}
 
 // Eval evaluates a duration relative to now and returns the time or an error.
 func Eval(expression string) (time.Time, error) {
-	return evalAnchor(time.Now(), expression)
+	return EvalAnchor(time.Now(), expression)
 }
 
 // evalAnchor evaluates a date expression relative to an anchor time.
-func evalAnchor(anchor time.Time, expression string) (time.Time, error) {
+func EvalAnchor(anchor time.Time, expression string) (time.Time, error) {
 	if len(expression) < 3 {
 		return zero, fmt.Errorf("Expression too short: %s", expression)
 	}

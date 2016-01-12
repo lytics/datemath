@@ -12,7 +12,7 @@ type testCase struct {
 }
 
 func (tc testCase) test(t *testing.T) {
-	r, e := evalAnchor(anchor, tc.Exp)
+	r, e := EvalAnchor(anchor, tc.Exp)
 	if tc.Ok {
 		// No error
 		if e != nil {
