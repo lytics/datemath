@@ -17,7 +17,7 @@ func (tc testCase) test(t *testing.T) {
 		// No error
 		if e != nil {
 			t.Errorf("`%s` was supposed to work but did not: %v", tc.Exp, e)
-		} else if !r.Equal(tc.Res) {
+		} else if !r.Equal(tc.Res) && tc.Res.Unix() != r.Unix() {
 			t.Errorf("`%s` != `%s` for expression: `%s`", tc.Res, r, tc.Exp)
 		}
 	} else {
@@ -43,10 +43,12 @@ var tests []testCase = []testCase{
 	{"-5M", anchor.AddDate(0, -5, 0), true},
 	{"-100y", time.Date(1914, 12, 31, 23, 59, 59, 0, time.UTC), true},
 	{"+1000y", time.Date(3014, 12, 31, 23, 59, 59, 0, time.UTC), true},
+	{"now", time.Now(), true},
 
 	// Bad
 	{"1s", zero, false},
 	{"-0.5s", zero, false},
+	{"now-", zero, false},
 	{"1S", zero, false},
 	{"++1s.", zero, false},
 	{"+5ms", zero, false},
